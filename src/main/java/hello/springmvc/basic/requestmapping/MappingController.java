@@ -46,4 +46,10 @@ public class MappingController {
 		log.info("mappingConsumes");
 		return "ok";
 	}
+
+	@PostMapping(value = "/mapping-produce", produces = "text/html")
+	public String mappingProduce() {
+		log.info("mappingProduces");
+		return "ok";
+	}
 }
