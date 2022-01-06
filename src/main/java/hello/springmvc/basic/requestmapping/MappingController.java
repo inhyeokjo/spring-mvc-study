@@ -26,4 +26,11 @@ public class MappingController {
 		log.info("mappingPath userId={}, orderId={}", userId, orderId);
 		return "ok";
 	}
+
+	//url에 ?mode=debug가 있어야 호출된다.
+	@GetMapping(value = "/mapping-param", params = "mode=debug")
+	public String mappingParam() {
+		log.info("mappingParam");
+		return "ok";
+	}
 }
