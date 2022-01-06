@@ -1,8 +1,7 @@
 package hello.springmvc.basic.requestmapping;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +12,12 @@ public class MappingController {
 	@GetMapping({"/hello-basic", "/hello-go"})
 	public String helloBasic() {
 		log.info("helloBasic");
+		return "ok";
+	}
+
+	@GetMapping("/mapping/{userId}")
+	public String mappingPath(@PathVariable("userId") String data) {
+		log.info("mappingPath userId={}", data);
 		return "ok";
 	}
 }
