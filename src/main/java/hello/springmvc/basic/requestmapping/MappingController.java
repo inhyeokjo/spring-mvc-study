@@ -1,5 +1,8 @@
 package hello.springmvc.basic.requestmapping;
 
+import java.awt.*;
+
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,13 +44,13 @@ public class MappingController {
 		return "ok";
 	}
 
-	@PostMapping(value = "/mapping-consume", consumes = "application/json")
+	@PostMapping(value = "/mapping-consume", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String mappingConsume() {
 		log.info("mappingConsumes");
 		return "ok";
 	}
 
-	@PostMapping(value = "/mapping-produce", produces = "text/html")
+	@PostMapping(value = "/mapping-produce", produces = MediaType.TEXT_HTML_VALUE)
 	public String mappingProduce() {
 		log.info("mappingProduces");
 		return "ok";
