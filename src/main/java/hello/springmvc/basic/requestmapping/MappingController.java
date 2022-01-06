@@ -2,6 +2,7 @@ package hello.springmvc.basic.requestmapping;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,12 @@ public class MappingController {
 	@GetMapping(value = "/mapping-header", headers = "mode=debug")
 	public String mappingHeader() {
 		log.info("mappingHeader");
+		return "ok";
+	}
+
+	@PostMapping(value = "/mapping-consume", consumes = "application/json")
+	public String mappingConsume() {
+		log.info("mappingConsumes");
 		return "ok";
 	}
 }
