@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 public class MappingController {
-	@RequestMapping("/hello-basic")
+	@RequestMapping({"/hello-basic", "/hello-go"})
 	public String helloBasic() {
 		log.info("helloBasic");
 		return "ok";
