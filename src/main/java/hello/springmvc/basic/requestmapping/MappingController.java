@@ -33,4 +33,10 @@ public class MappingController {
 		log.info("mappingParam");
 		return "ok";
 	}
+
+	@GetMapping(value = "/mapping-header", headers = "mode=debug")
+	public String mappingHeader() {
+		log.info("mappingHeader");
+		return "ok";
+	}
 }
