@@ -1,6 +1,7 @@
 package hello.springmvc.basic.request;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,6 +47,15 @@ public class RequestParamController {
 	@ResponseBody
 	@RequestMapping("/request-param-v4")
 	public String requestParamV4(String username, int age) {
+		log.info("username={}, age={}", username, age);
+		return "ok";
+	}
+
+	@ResponseBody
+	@RequestMapping("/request-param-required")
+	public String requestParamRequired(
+			@RequestParam(required = false) String username,
+			@RequestParam(required = false) Optional<Integer> age) {
 		log.info("username={}, age={}", username, age);
 		return "ok";
 	}
