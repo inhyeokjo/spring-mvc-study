@@ -9,6 +9,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RequestBodyStringController {
 
 	@PostMapping("/request-body-string-v1")
-	public void requestBodyString(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void requestBodyStringV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ServletInputStream inputStream = request.getInputStream();
 		String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
@@ -30,11 +31,18 @@ public class RequestBodyStringController {
 	}
 
 	@PostMapping("/request-body-string-v2")
-	public void requestBodyString(InputStream inputStream, Writer responseWriter) throws IOException {
+	public void requestBodyStringV2(InputStream inputStream, Writer responseWriter) throws IOException {
 		String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
 		log.info("messageBody={}", messageBody);
 
 		responseWriter.write("ok");
+	}
+
+	@PostMapping("/request-body-string-v3")
+	public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) throws IOException {
+		log.info("messageBody={}", httpEntity.getBody());
+
+		return new HttpEntity<String>("ok");
 	}
 }
