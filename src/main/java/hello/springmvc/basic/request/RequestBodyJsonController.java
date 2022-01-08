@@ -7,6 +7,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +51,14 @@ public class RequestBodyJsonController {
 	@PostMapping("/request-body-json-v3")
 	public String requestBodyJsonV3(@RequestBody HelloData helloData) throws IOException {
 		log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+		return "ok";
+	}
+
+	@ResponseBody
+	@PostMapping("/request-body-json-v4")
+	public String requestBodyJsonV4(HttpEntity<HelloData> httpEntity) throws IOException {
+		HelloData data = httpEntity.getBody();
+		log.info("username={}, age={}", data.getUsername(), data.getAge());
 		return "ok";
 	}
 }
