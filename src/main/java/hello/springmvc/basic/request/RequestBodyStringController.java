@@ -13,6 +13,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,5 +46,12 @@ public class RequestBodyStringController {
 		log.info("messageBody={}", httpEntity.getBody());
 
 		return new HttpEntity<String>("ok");
+	}
+
+	@ResponseBody
+	@PostMapping("/request-body-string-v4")
+	public String requestBodyStringV4(@RequestBody String messageBody) throws IOException {
+		log.info("messageBody={}", messageBody);
+		return "ok";
 	}
 }
